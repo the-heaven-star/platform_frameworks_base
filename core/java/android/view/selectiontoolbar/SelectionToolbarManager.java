@@ -22,6 +22,7 @@ import android.annotation.NonNull;
 import android.annotation.SystemService;
 import android.content.Context;
 import android.os.RemoteException;
+import android.os.SystemProperties;
 
 import java.util.Objects;
 
@@ -77,7 +78,8 @@ public final class SelectionToolbarManager {
     }
 
     private boolean isRemoteSelectionToolbarEnabled() {
-        return systemSelectionToolbarEnabled();
+        return SystemProperties.getBoolean("persist.sys.selection_toolbar_remote", false)
+                && systemSelectionToolbarEnabled();
     }
 
     /**
